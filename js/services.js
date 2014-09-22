@@ -39,7 +39,7 @@ angular.module('app.services', [])
 		get : function(id){
 			var _this = this;
 			function run(){
-				return $http.get(this.api.get(id))
+				return $http.get(_this.api.get(id))
 			    .then(function(data){
 			    	var obj = JSON.parse(JSON.stringify(_this.list[id]));
 			    	obj.list = index(data.data.data);
