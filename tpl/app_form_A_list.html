@@ -1,0 +1,43 @@
+<div class="bg-light lter b-b wrapper-md">
+  <h1 class="m-n font-thin h3">DANH SÁCH ĐƠN HÀNG VẬN CHUYỂN</h1>
+</div>
+<div class="wrapper-md">
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <div class="panel-body b-b b-light">
+        Search: <input id="filter" type="text" class="form-control input-sm w-sm inline m-r"/>
+        <a href="#/app/formA/"
+          class="btn btn-success pull-right" >TẠO GIAO DỊCH MỚI</a>
+      </div>
+      <div>
+        <table class="table m-b-none" ui-jq="footable" data-filter="#filter" data-page-size="20">
+          <thead>
+            <tr>
+              <th data-type="numeric" data-sort-initial="descending" style="width: 60px">ID</th>
+              <th data-toggle="true">Họ và tên</th>
+              <th data-sort-ignore="true">Địa chỉ/SĐT</th>
+              <th style="width: 50px" data-sort-ignore="true">Sửa</th>
+              <th style="width: 50px" data-sort-ignore="true">Xóa</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="giao_dich in danh_sach_giao_dich track by $index">
+                <td ng-bind="giao_dich.id"></td>
+                <td ng-bind="giao_dich.ho_va_ten"></td>
+                <td ng-bind="giao_dich.dia_chi_sdt"></td>
+                <td><a ng-href="#/app/formA/{{giao_dich.id}}" class="fa fa-pencil"></a></td>
+                <td><a ng-click="delete(giao_dich.id)" class="fa fa-times text-danger"></a></td>
+            </tr>
+          </tbody>
+          <tfoot class="hide-if-no-paging">
+            <tr>
+                <td colspan="5" class="text-center">
+                    <ul class="pagination"></ul>
+                </td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

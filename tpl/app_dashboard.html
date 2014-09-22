@@ -1,0 +1,178 @@
+
+    <!-- main header -->
+    <div class="bg-light lter b-b wrapper-md">
+      <div class="row">
+        <div class="col-sm-6 col-xs-12">
+          <h1 class="m-n font-thin h3 text-black">Dashboard</h1>
+          <small class="text-muted">Welcome to angulr application</small>
+        </div>
+      </div>
+    </div>
+    <!-- / main header -->
+    
+   <div class="wrapper-md">
+    <div class="panel panel-default" ng-repeat="d in data track by $index">
+      <div class="panel-heading" style="background-color: #428bca;color: #fff;" ng-click="show($index)">
+        <div class="pull-right  font-bold" ng-bind="d.email"></div>
+        <div class="clearfix text-mute">
+          12/02/2014
+        </div>
+      </div>
+      <div class="panel-body" ng-show="showed($index)">
+        <div class="row text-md">
+          <div class="col-sm-3 list-group list-group-sp text-md no-borders auto">
+            <div class="wrapper-md" style="padding-bottom:0">
+              <div class="list-group-item clearfix">
+                <div class="col-sm-7 font-bold">Số đơn hàng</div>
+                <div class="col-sm-5" ng-bind="d.so_don_hang"></div>
+              </div>
+            </div>
+            <div class="wrapper-md" style="padding-bottom:0">
+              <div class="list-group-item clearfix">
+                <div class="col-sm-7 font-bold">Đặt cọc</div>
+                <div class="col-sm-5" ng-bind="d.dat_coc"></div>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-5 list-group list-group-sp text-md no-borders auto">
+            <div class="wrapper-md" style="padding-bottom:0">
+              <div class="list-group-item clearfix">
+                <div class="col-sm-8 font-bold">Shop hoàn lại do hàng thiếu</div>
+                <div class="col-sm-4" ng-bind="d.shop_hoan_lai_do_hang_thieu"></div>
+              </div>
+            </div>
+            <div class="wrapper-md" style="padding-bottom:0">
+              <div class="list-group-item clearfix">
+                <div class="col-sm-8 font-bold">Đã nhận hoặc chuyển vào đơn</div>
+                <div class="col-sm-4" ng-bind="d.da_hoan_hoac_chuyen_vao_don"></div>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-4 list-group list-group-sp text-md no-borders auto">
+            <div class="wrapper-md" style="padding-bottom:0">
+              <div class="list-group-item clearfix">
+                <div class="col-sm-6 font-bold">Đã thu thêm</div>
+                <div class="col-sm-6" ng-bind="d.da_thu_them"></div>
+              </div>
+            </div>
+            <div class="wrapper-md" style="padding-bottom:0">
+              <div class="list-group-item clearfix">
+                <div class="col-sm-6 font-bold">Phải thu thêm</div>
+                <div class="col-sm-6" ng-bind="d.phai_thu_them">100</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row bg-dark text-white text-md">
+          <div class="wrapper-md" style="text-align: center">
+              <div class="col-sm-3 font-bold">HÀNG KHÁCH ĐẶT BAN ĐẦU</div>
+              <div class="col-sm-3 font-bold">TIỀN THANH TOÁN THỰC TẾ CHO SHOP</div>
+              <div class="col-sm-3 font-bold">CÔNG NỢ PHÁT SINH</div>
+              <div class="col-sm-3 font-bold">PHÁT SINH CÓ</div>
+          </div>
+        </div>
+        <div class="row bg-dark text-white">
+          <div class="col-sm-3 list-group list-group-sp  text-md no-borders auto">
+            <div class="wrapper-md" style="padding-bottom:0">
+              <div class="list-group-item clearfix">
+                <div class="col-sm-9 font-bold">Tiền hàng</div>
+                <div class="col-sm-3" ng-bind="d.bd_tien_hang">100</div>
+              </div>
+              <div class="list-group-item clearfix">
+                <div class="col-sm-9 font-bold">Tiền ship TQ</div>
+                <div class="col-sm-3" ng-bind="d.bd_tien_ship_tq">100</div>
+              </div>
+              <div class="list-group-item clearfix">
+                <div class="col-sm-9 font-bold">Tiền VC qua BG</div>
+                <div class="col-sm-3" ng-bind="d.bd_tien_vc_qua_bg">100</div>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-3 list-group list-group-sp  text-md no-borders auto">
+            <div class="wrapper-md" style="padding-bottom:0">
+              <div class="list-group-item clearfix">
+                <div class="col-sm-9 font-bold">Tiền hàng</div>
+                <div class="col-sm-3" ng-bind="d.tt_tien_hang">100</div>
+              </div>
+              <div class="list-group-item clearfix">
+                <div class="col-sm-9 font-bold">Tiền ship</div>
+                <div class="col-sm-3" ng-bind="d.tt_tien_ship">100</div>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-3 list-group list-group-sp  text-md no-borders auto">
+            <div class="wrapper-md" style="padding-bottom:0">
+              <div class="list-group-item clearfix">
+                <div class="col-sm-9 font-bold">Phụ kiện</div>
+                <div class="col-sm-3" ng-bind="d.phu_kien">100</div>
+              </div>
+              <div class="list-group-item clearfix">
+                <div class="col-sm-9 font-bold">Trọng lượng</div>
+                <div class="col-sm-3" ng-bind="d.trong_luong">100</div>
+              </div>
+              <div class="list-group-item clearfix">
+                <div class="col-sm-9 font-bold">Tính tiền cân nặng</div>
+                <div class="col-sm-3" ng-bind="d.phu_kien+d.trong_luong">100</div>
+              </div>
+              <div class="list-group-item clearfix">
+                <div class="col-sm-9 font-bold">Tính tiền CPN</div>
+                <div class="col-sm-3" ng-bind="d.tinh_tien_cpn">100</div>
+              </div>
+              <div class="list-group-item clearfix">
+                <div class="col-sm-9 font-bold">Phát sinh thêm</div>
+                <div class="col-sm-3" ng-bind="d.phat_sinh_them">100</div>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-3 list-group list-group-sp  text-md no-borders auto">
+            <div class="wrapper-md" style="padding-bottom:0">
+              <div class="list-group-item clearfix">
+                <div class="col-sm-9 font-bold">Tính tiên phải hoàn lại</div>
+                <div class="col-sm-3" ng-bind="d.tinh_tien_phai_hoan_lai">100</div>
+              </div>
+              <div class="list-group-item clearfix">
+                <div class="col-sm-9 font-bold">Tính tiên hoàn lại</div>
+                <div class="col-sm-3" ng-bind="d.tinh_tien_hoan_lai">100</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row bg-dark text-white">
+          <div class="col-sm-3 list-group list-group-sp  text-md no-borders auto">
+            <div class="wrapper-md" style="padding-top:0; padding-bottom:0">
+              <div class="list-group-item clearfix">
+                <div class="col-sm-9 font-bold">Cộng</div>
+                <div class="col-sm-3" ng-bind="d.bd_tien_hang+d.bd_tien_ship_tq+d.bd_tien_vc_qua_bg"></div>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-3 list-group list-group-sp  text-md no-borders auto">
+            <div class="wrapper-md" style="padding-top:0; padding-bottom:0">
+              <div class="list-group-item clearfix">
+                <div class="col-sm-9 font-bold">Cộng</div>
+                <div class="col-sm-3" ng-bind="d.tt_tien_hang+d.tt_tien_ship">100</div>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-3 list-group list-group-sp  text-md no-borders auto">
+            <div class="wrapper-md" style="padding-top:0; padding-bottom:0">
+              <div class="list-group-item clearfix">
+                <div class="col-sm-9 font-bold">Cộng PS Nợ</div>
+                <div class="col-sm-3" ng-bind="d.phu_kien+d.trong_luong+d.tinh_tien_cpn+d.phat_sinh_them">100</div>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-3 list-group list-group-sp  text-md no-borders auto">
+            <div class="wrapper-md" style="padding-top:0; padding-bottom:0">
+              <div class="list-group-item clearfix">
+                <div class="col-sm-9 font-bold">Cộng PS có</div>
+                <div class="col-sm-3" ng-bind="d.tinh_tien_phai_hoan_lai+d.tinh_tien_hoan_lai">100</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+   </div>
+
+  
