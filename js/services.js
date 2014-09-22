@@ -38,12 +38,16 @@ angular.module('app.services', [])
 	DanhSachGiaoDichPrototype.prototype = {
 		get : function(id){
 			var _this = this;
-		    return $http.get(this.api.get(id))
-		    .then(function(data){
-		    	var obj = JSON.parse(JSON.stringify(_this.list[id]));
-		    	obj.list = index(data.data.data);
-		    	return obj;
-		    });
+			function run(){
+				return $http.get(this.api.get(id))
+			    .then(function(data){
+			    	var obj = JSON.parse(JSON.stringify(_this.list[id]));
+			    	obj.list = index(data.data.data);
+			    	return obj;
+			    });
+			}
+			if (!_this.list[id]) return _this.fetch().then(run);
+			else return run();
 	  	},
 
 	  	delete: function(id){
