@@ -1,0 +1,110 @@
+<div class="bg-light lter b-b wrapper-md">
+  <h1 class="m-n font-thin h3">FORM D</h1>
+</div>
+<div class="wrapper-md">
+  <form name="form" class="form-validation">
+    <div class="panel panel-default">
+      <footer class="panel-footer text-right bg-light lter">
+        <a href="#/app/formDList" class="btn btn-default">QUAY LẠI</a>
+      </footer>
+    </div>
+  </form>
+    <div class="panel panel-default">
+    <div class="panel-body b-b b-light">
+      Search: <input id="filter" type="text" class="form-control input-sm w-sm inline m-r"/>
+    </div>
+    <div>
+      <table class="table m-b-none" ui-jq="footable" data-filter="#filter" data-page-size="5">
+        <thead>
+          <tr>
+            <th data-type="numeric" data-sort-initial="descending" style="width: 70px">ID</th>
+            <th data-sort-ignore="true">Mã vận đơn</th>
+            <th  data-sort-ignore="true" data-hide="phone,tablet">Ngày nhập mã</th>
+            <th  data-sort-ignore="true" data-hide="phone,tablet">Kho Quảng Châu</th>
+            <th  data-sort-ignore="true" data-hide="phone,tablet">Ngày nhận</th>
+            <th  data-sort-ignore="true" data-hide="phone,tablet">Đã chuyển</th>
+            <th  data-sort-ignore="true" data-hide="phone,tablet">Ngày chuyển</th>
+            <th  data-sort-ignore="true" data-hide="phone,tablet">Kho HN</th>
+            <th  data-sort-ignore="true" data-hide="phone,tablet">Đã nhận</th>
+            <th  data-sort-ignore="true" data-hide="phone,tablet">Ngày nhận</th>
+            <th  data-sort-ignore="true" data-hide="phone,tablet">Ghi chú</th>
+            <th style="width: 30px"  data-sort-ignore="true" data-sort-ignore="true">Sửa</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="don_hang in danh_sach_don_hang.list track by $index">
+              <td ng-bind="don_hang.id"></td>
+              <td ng-bind="don_hang.ma_van_don"></td>
+              <td ng-bind="renderDate(don_hang.ngay_nhap_ma)"></td>
+              <td ng-bind="don_hang.kho_quang_chau"></td>
+              <td ng-bind="renderDate(don_hang.ngay_nhan_kho_quang_chau)"></td>
+              <td ng-bind="don_hang.da_chuyen"></td>
+              <td ng-bind="renderDate(don_hang.ngay_chuyen)"></td>
+              <td ng-bind="don_hang.kho_hn"></td>
+              <td ng-bind="don_hang.da_nhan_kho_hn"></td>
+              <td ng-bind="renderDate(don_hang.ngay_nhan_kho_hn)"></td>
+              <td ng-bind="don_hang.ghi_chu"></td>
+              <td><a ng-click="edit(don_hang.id)" class="fa fa-pencil" ng-class="{'text-success':!don_hang.phu_kien}"></a></td>
+          </tr>
+        </tbody>
+        <tfoot class="hide-if-no-paging" id="form">
+          <tr>
+              <td colspan="5" class="text-center">
+                  <ul class="pagination"></ul>
+              </td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+  </div>
+  <form name="form" class="form-validation" ng-if="don_hang" ng-init="datepicker={}">
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <div class="form-group">
+          <label>Mã vận đơn</label>
+          <input disabled="true" type="text" class="form-control" ng-model="don_hang.ma_van_don">
+        </div>
+        <div class="form-group">
+          <label>Ngày nhập mã</label>
+          <input type="text" class="form-control" datepicker-popup="dd/MM/yyyy" ng-model="don_hang.ngay_nhap_ma" datepicker-options="dateOptions" close-text="Close" disabled />
+        </div>
+        <div class="form-group">
+          <label>Kho Quảng Châu</label>
+          <input type="text" class="form-control" ng-model="don_hang.kho_quang_chau">
+        </div>
+        <div class="form-group">
+          <label>Ngày nhận</label>
+          <input type="text" class="form-control" datepicker-popup="dd/MM/yyyy" ng-model="don_hang.ngay_nhan_kho_quang_chau" ng-click="datepicker.ngay_nhan_kho_quang_chau=true" is-open="datepicker.ngay_nhan_kho_quang_chau" datepicker-options="dateOptions" required close-text="Close" />
+        </div>
+        <div class="form-group">
+          <label>Đã chuyển</label>
+          <input type="text" class="form-control" ng-model="don_hang.da_chuyen">
+        </div>
+        <div class="form-group">
+          <label>Ngày chuyển</label>
+          <input type="text" class="form-control" datepicker-popup="dd/MM/yyyy" ng-model="don_hang.ngay_chuyen" ng-click="datepicker.ngay_chuyen=true" is-open="datepicker.ngay_chuyen" datepicker-options="dateOptions" required close-text="Close" />
+        </div>
+        <div class="form-group">
+          <label>Kho HN</label>
+          <input type="text" class="form-control" ng-model="don_hang.kho_hn">
+        </div>
+        <div class="form-group">
+          <label>Đã nhận</label>
+          <input type="text" class="form-control" ng-model="don_hang.da_nhan_kho_hn">
+        </div>
+        <div class="form-group">
+          <label>Ngày nhận</label>
+          <input type="text" class="form-control" datepicker-popup="dd/MM/yyyy" ng-model="don_hang.ngay_nhan_kho_hn" ng-click="datepicker.ngay_nhan_kho_hn=true" is-open="datepicker.ngay_nhan_kho_hn" datepicker-options="dateOptions" required close-text="Close" />
+        </div>
+        <div class="form-group">
+          <label>Ghi chú</label>
+          <input type="text" class="form-control" ng-model="don_hang.ghi_chu">
+        </div>
+      </div>
+      <footer class="panel-footer text-right bg-light lter">
+        <a class="btn btn-default" ng-click="cancel()">HỦY BỎ</a>
+        <button type="submit" class="btn btn-success" ng-disabled="form.$invalid" ng-click="apply_edit()">CẬP NHẬP</button>
+      </footer>
+    </div>
+  </form>
+</div>

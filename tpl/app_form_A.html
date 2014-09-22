@@ -1,0 +1,136 @@
+<div class="bg-light lter b-b wrapper-md">
+  <h1 class="m-n font-thin h3">ĐƠN HÀNG VẬN CHUYỂN</h1>
+</div>
+<div class="wrapper-md">
+  <form name="form" class="form-validation">
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <div class="form-group">
+          <label>Họ và tên</label>
+          <input type="text" class="form-control" ng-model="danh_sach_don_hang.ho_va_ten">
+        </div>
+        <div class="form-group">
+          <label>Địa chỉ/SĐT</label>
+          <input type="text" class="form-control" ng-model="danh_sach_don_hang.dia_chi_sdt">
+        </div>
+      </div>
+      <footer class="panel-footer text-right bg-light lter">
+        <a href="#/app/formAList" class
+        ="btn btn-default">QUAY LẠI</a>
+        <button 
+          type="submit" 
+          class="btn" ng-class="{'btn-primary':danh_sach_don_hang.id, 'btn-success':!danh_sach_don_hang.id}"
+          ng-disabled="!danh_sach_don_hang.ho_va_ten||!danh_sach_don_hang.dia_chi_sdt"
+          ng-bind="danh_sach_don_hang.id?'CẬP NHẬP ĐƠN HÀNG':'TẠO ĐƠN HÀNG'"
+          ng-click="danh_sach_don_hang.id?update():create()"></button>
+          <button class="btn btn-default btn-success" ng-if="danh_sach_don_hang.id" ng-click="add()">THÊM SẢN PHẨM</button>
+      </footer>
+    </div>
+  </form>
+  <div class="panel panel-default" ng-if="danh_sach_don_hang.id">
+    <div class="panel-body b-b b-light">
+      Search: <input id="filter" type="text" class="form-control input-sm w-sm inline m-r"/>
+    </div>
+    <div>
+      <table class="table m-b-none" ui-jq="footable" data-filter="#filter" data-page-size="5">
+        <thead>
+          <tr>
+            <th data-type="numeric" data-sort-initial="descending" style="width: 70px">ID</th>
+            <th data-sort-ignore="true">Link web</th>
+            <th>Tên shop</th>
+            <th data-hide="phone,tablet" data-sort-ignore="true">Màu sắc, Size</th>
+            <th data-hide="all" data-sort-ignore="true">Ghi chú (Khách hàng)</th>
+            <th data-hide="phone" data-sort-ignore="true">Số lượng</th>
+            <th data-hide="phone,tablet" data-sort-ignore="true">Giá web (Tệ TQ)</th>
+            <th data-hide="phone,tablet" data-sort-ignore="true">Thành tiền (Tệ TQ)</th>
+            <th data-hide="phone,tablet" data-sort-ignore="true">Ship nội địa TQ (Tệ TQ)</th>
+            <th data-hide="phone,tablet" data-sort-ignore="true">Trọng lượng (Kg)</th>
+            <th data-hide="phone" data-sort-ignore="true">Thành tiền (VNĐ)</th>
+            <th data-hide="all" data-sort-ignore="true">Ghi chú</th>
+            <th style="width: 30px" data-sort-ignore="true">Sửa</th>
+            <th style="width: 30px" data-sort-ignore="true">Xóa</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="don_hang in danh_sach_don_hang.list track by $index">
+              <td ng-bind="don_hang.id"></td>
+              <td><a ng-href="{{don_hang.link_web}}" target="_blank" class="fa fa-link"></a></td>
+              <td ng-bind="don_hang.ten_shop"></td>
+              <td ng-bind="don_hang.mau_sac_size"></td>
+              <td ng-bind="don_hang.ghi_chu_khach_hang"></td>
+              <td ng-bind="don_hang.so_luong"></td>
+              <td ng-bind="don_hang.gia_web_te"></td>
+              <td ng-bind="don_hang.thanh_tien_te"></td>
+              <td ng-bind="don_hang.ship_noi_dia_tq_te"></td>
+              <td ng-bind="don_hang.trong_luong"></td>
+              <td ng-bind="don_hang.thanh_tien_vnd"></td>
+              <td ng-bind="don_hang.ghi_chu"></td>
+              <td><a ng-click="edit(don_hang.id)" class="fa fa-pencil"></a></td>
+              <td><a ng-click="remove(don_hang.id)" class="fa fa-times text-danger"></a></td>
+          </tr>
+        </tbody>
+        <tfoot class="hide-if-no-paging" id="form">
+          <tr>
+              <td colspan="5" class="text-center">
+                  <ul class="pagination"></ul>
+              </td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+  </div>
+  <form name="form" class="form-validation" ng-if="don_hang">
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <div class="form-group">
+          <label>Link web</label>
+          <input type="url" class="form-control" placeholder="http://" ng-model="don_hang.link_web" required id="focus">
+        </div>
+        <div class="form-group">
+          <label>Tên shop</label>
+          <input type="text" class="form-control" ng-model="don_hang.ten_shop" required>
+        </div>
+        <div class="form-group">
+          <label>Màu sắc, Size</label>
+          <input type="text" class="form-control" ng-model="don_hang.mau_sac_size" required>
+        </div>
+        <div class="form-group">
+          <label>Ghi chú</label>
+          <input type="text" class="form-control" ng-model="don_hang.ghi_chu_khach_hang" required>
+        </div>
+        <div class="form-group">
+          <label>Số lượng</label>
+          <input type="text" class="form-control" ng-model="don_hang.so_luong" ui-validate=" '$value > 0' " required>
+        </div>
+        <div class="form-group">
+          <label>Giá web (Tệ TQ)</label>
+          <input type="text" class="form-control" ng-model="don_hang.gia_web_te" ui-validate=" '$value > 0' " required>
+        </div>
+        <div class="form-group">
+          <label>Thành tiền (Tệ TQ)</label>
+          <input type="text" class="form-control" ng-model="don_hang.thanh_tien_te" ui-validate=" '$value > 0' " required>
+        </div>
+        <div class="form-group">
+          <label>Ship nội địa TQ (Tệ TQ)</label>
+          <input type="text" class="form-control" ng-model="don_hang.ship_noi_dia_tq_te" ui-validate=" '$value > 0' " required>
+        </div>
+        <div class="form-group">
+          <label>Trọng lượng (Kg)</label>
+          <input type="text" class="form-control" ng-model="don_hang.trong_luong" ui-validate=" '$value > 0' " required>
+        </div>
+        <div class="form-group">
+          <label>Thành tiền (VNĐ)</label>
+          <input type="text" class="form-control" ng-model="don_hang.thanh_tien_vnd" ui-validate=" '$value > 0' " required>
+        </div>
+        <div class="form-group">
+          <label>Ghi chú</label>
+          <input type="text" class="form-control" ng-model="don_hang.ghi_chu" required>
+        </div>
+      </div>
+      <footer class="panel-footer text-right bg-light lter">
+        <a class="btn btn-default" ng-click="cancel()">HỦY BỎ</a>
+        <button type="submit" class="btn btn-success" ng-disabled="form.$invalid" ng-bind="isAdd?'THÊM SẢN PHẨM':'CẬP NHẬP'" ng-click="isAdd?apply_add():apply_edit()"></button>
+      </footer>
+    </div>
+  </form>
+</div>
